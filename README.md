@@ -1,2 +1,2 @@
 # Image-Slider
-A frontent project made using JS used to count the time from current time to set time.
+A frontent project made using JS 
