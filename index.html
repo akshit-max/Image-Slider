@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window slider</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .box {
+            margin: auto;
+            width: 1000px;
+            height: 500px;
+            margin-top: 100px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 10px 20px 30px grey;
+        }
+        .slide {
+            position: absolute;
+            width: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 23px;
+            margin-top: 50px;
+        }
+        .btnn {
+            font-size: x-large;
+            font-weight: bolder;
+            width: 200px;
+            border-radius: 10px;
+            padding: 23px 26px;
+            box-shadow: 10px 20px 30px grey;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const slides = document.querySelectorAll(".slide");
+            let counter = 0;
+
+            slides.forEach((slide, index) => {
+                slide.style.left = `${index * 100}%`;
+            });
+
+            function goPrev() {
+                if (counter > 0) {
+                    counter--;
+                } else {
+                    counter = slides.length - 1;
+                }
+                slideImage();
+            }
+
+            function goNext() {
+                if (counter < slides.length - 1) {
+                    counter++;
+                } else {
+                    counter = 0;
+                }
+                slideImage();
+            }
+
+            function slideImage() {
+                slides.forEach((slide) => {
+                    slide.style.transform = `translateX(-${counter * 100}%)`;
+                });
+            }
+
+            document.getElementById("btn1").addEventListener("click", goPrev);
+            document.getElementById("btn2").addEventListener("click", goNext);
+        });
+    </script>
+</head>
+<body>
+    <div class="box">
+        <img class="slide" src="https://picsum.photos/id/103/1000/500" alt="">
+        <img class="slide" src="https://picsum.photos/id/225/1000/500" alt="">
+        <img class="slide" src="https://picsum.photos/id/2/1000/500" alt="">
+        <img class="slide" src="https://picsum.photos/id/234/1000/500" alt="">
+    </div>
+    <nav class="btn">
+        <button id="btn1" class="btnn">PREV</button>
+        <button id="btn2" class="btnn">NEXT</button>
+    </nav>
+</body>
+</html>
